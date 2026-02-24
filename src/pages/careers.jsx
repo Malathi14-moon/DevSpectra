@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 import './careers.css';
 import axios from "axios";
@@ -8,7 +8,7 @@ const Careers = () => {
   const [showGeneralApplication, setShowGeneralApplication] = useState(false);
 
   const [selectedJob, setSelectedJob] = useState(null);
-  const [activeCategory, setActiveCategory] = useState('all');
+  
 
 
 
@@ -62,27 +62,6 @@ const handleResumeSubmit = async (e) => {
 };
 
 
-
-
-
-
-  
-
- 
-
-
-
-
-
-
-
-  const categories = [
-    { id: 'all', label: 'All Positions' },
-    { id: 'engineering', label: 'Engineering' },
-    { id: 'design', label: 'Design' },
-    { id: 'product', label: 'Product' },
-    { id: 'business', label: 'Business' }
-  ];
 
  
 
