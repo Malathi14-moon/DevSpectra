@@ -1,0 +1,140 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.App::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(0, 255, 245, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.main-content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* Geometric Background Elements */
+.geometric-bg {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.1;
+}
+
+.geometric-bg.circle {
+  width: 300px;
+  height: 300px;
+  border: 2px solid var(--neon-cyan);
+  border-radius: 50%;
+  top: 10%;
+  right: 5%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.geometric-bg.square {
+  width: 200px;
+  height: 200px;
+  border: 2px solid var(--neon-purple);
+  transform: rotate(45deg);
+  bottom: 15%;
+  left: 8%;
+  animation: rotate 20s linear infinite;
+}
+
+.geometric-bg.triangle {
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 173px solid var(--neon-pink);
+  opacity: 0.05;
+  top: 40%;
+  right: 15%;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease-out;
+}
+
+.loading-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 3px solid var(--accent-dark);
+  border-top-color: var(--neon-cyan);
+  border-radius: 50%;
+  animation: rotate 1s linear infinite;
+}
+
+/* Page Transition */
+.page-transition {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Decorative Lines */
+.deco-line {
+  position: absolute;
+  height: 1px;
+  background: var(--gradient-primary);
+  opacity: 0.3;
+}
+
+.deco-line.horizontal {
+  width: 100%;
+  left: 0;
+}
+
+.deco-line.vertical {
+  width: 1px;
+  height: 100%;
+  top: 0;
+}
+
+/* Grid Overlay */
+.grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 255, 245, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 245, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .geometric-bg {
+    display: none;
+  }
+}
