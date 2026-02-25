@@ -8,6 +8,7 @@ const Careers = () => {
   const [showGeneralApplication, setShowGeneralApplication] = useState(false);
 
   const [selectedJob, setSelectedJob] = useState(null);
+  const [description, setDescription] = useState("");
   
 
 
@@ -37,6 +38,8 @@ const handleResumeSubmit = async (e) => {
   formData.append("name", name);
   formData.append("email", email);
   formData.append("phone", phone);
+  formData.append("description", description);
+
 
   try {
     setLoading(true);
@@ -53,6 +56,7 @@ const handleResumeSubmit = async (e) => {
     setName("");
     setEmail("");
     setPhone("");
+    setDescription("");
   } catch (error) {
     console.error(error);
     alert(error.response?.data?.message || "Server error ❌");
@@ -298,6 +302,16 @@ const handleResumeSubmit = async (e) => {
                 onChange={(e) => setPhone(e.target.value)}
                 required
               />
+
+
+
+              <textarea
+  placeholder="Brief description about yourself"
+  value={description}
+  onChange={(e) => setDescription(e.target.value)}
+  rows="4"
+  required
+/>
 
               <label className="file-upload-btn">
                 Choose Resume

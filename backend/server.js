@@ -106,38 +106,7 @@ transporter.verify((error) => {
   else console.log("SMTP Server ready ✅");
 });
 
-/*app.post("/send-application", upload.single("resume"), async (req, res) => {
-  console.log("📩 API HIT: /send-application");
-  console.log("BODY:", req.body);
-  console.log("FILE:", req.file);
-  try {
-    const { name, email, phone } = req.body;
 
-    if (!req.file) {
-      return res.status(400).json({ message: "Resume file is required" });
-    }
-
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.HR_EMAIL,
-      subject: "New Job Application",
-      html: `
-        <h2>New Applicant</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-      `,
-      attachments: [
-        { filename: req.file.originalname, path: req.file.path },
-      ],
-    });
-
-    res.json({ message: "Application sent successfully" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Failed to send email" });
-  }
-});*/
 
 
 
@@ -147,13 +116,13 @@ app.post("/send-application", upload.single("resume"), async (req, res) => {
   console.log("FILE:", req.file);
 
   try {
-    const { name, email, phone } = req.body;
+    const { name, email, phone, description } = req.body;
 
     if (!req.file) {
       return res.status(400).json({ message: "Resume file is required" });
     }
 
-    const mailOptions = {
+    /*const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.HR_EMAIL,
       subject: "New Job Application",
@@ -169,7 +138,32 @@ app.post("/send-application", upload.single("resume"), async (req, res) => {
           path: req.file.path,
         },
       ],
-    };
+    };*/
+
+
+
+  const mailOptions = {
+  from: process.env.EMAIL_USER,
+  to: process.env.HR_EMAIL,
+  subject: `New Job Application - ${name}`,
+  html: `
+    <h2>New Applicant</h2>
+    <p><strong>Name:</strong> ${name}</p>
+    <p><strong>Email:</strong> ${email}</p>
+    <p><strong>Phone:</strong> ${phone}</p>
+    <p><strong>Description:</strong></p>
+    <p>${description || "No description provided"}</p>
+
+  `,
+  attachments: [
+    {
+      filename: req.file.originalname,
+      path: req.file.path,
+    },
+  ],
+};
+
+
 
     await transporter.sendMail(mailOptions);
 
