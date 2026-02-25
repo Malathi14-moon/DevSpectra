@@ -1,6 +1,8 @@
 /* Careers.css - DevSpectra Careers Page Styles */
 
 /* Global Variables */
+
+
 :root {
   --primary-bg: #0a0e1a;
   --secondary-bg: #111827;
@@ -13,19 +15,25 @@
   --success-green: #10b981;
 }
 
-/* Container */
+/* ===================================
+   Container
+   =================================== */
+
 .careers-container {
   background: var(--primary-bg);
   color: var(--text-primary);
   min-height: 100vh;
+  overflow-x: hidden;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ===================================
+   Hero Section
+   =================================== */
 
-/* Hero Section */
 .careers-hero {
   padding: 120px 20px 80px;
   background: linear-gradient(180deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
@@ -44,6 +52,7 @@
   background: radial-gradient(circle, rgba(34, 211, 238, 0.1) 0%, transparent 70%);
   border-radius: 50%;
   transform: translateY(-50%);
+  pointer-events: none;
 }
 
 .hero-content {
@@ -51,29 +60,26 @@
   margin: 0 auto;
   position: relative;
   z-index: 1;
-  height: 70vh;
+  /* removed fixed height: 70vh — causes layout issues on mobile */
 }
 
+/* Badge — centered via flexbox, no hardcoded margin */
 .badge {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 8px 20px;
   background: rgba(34, 211, 238, 0.1);
   border: 1px solid rgba(34, 211, 238, 0.3);
   border-radius: 50px;
   font-size: 14px;
-  margin-bottom: 30px;
+  margin: 0 auto 30px;
   color: var(--accent-cyan);
-  width: 180px;
-  align-items: center;
-  margin-left: 300px;
-  margin-top: 100px;
 }
 
 .badge-icon {
   font-size: 16px;
-  
 }
 
 .hero-title {
@@ -95,47 +101,35 @@
   margin: 0 auto;
 }
 
-
-
-/* Animation base */
+/* Animations */
 .hero-animate {
   opacity: 0;
   transform: translateY(60px);
   animation: slideUpFade 1s ease-out forwards;
 }
 
-/* Staggered delays */
-.delay-1 {
-  animation-delay: 0.1s;
-}
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.3s; }
+.delay-3 { animation-delay: 0.5s; }
 
-.delay-2 {
-  animation-delay: 0.3s;
-}
-
-.delay-3 {
-  animation-delay: 0.5s;
-}
-
-/* Keyframes */
 @keyframes slideUpFade {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
+/* ===================================
+   Content Wrapper
+   =================================== */
 
-
-
-/* Content Wrapper */
 .content-wrapper {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* Section Title */
+/* ===================================
+   Section Title
+   =================================== */
+
 .section-title {
   font-size: 42px;
   font-weight: 700;
@@ -156,7 +150,10 @@
   margin: 0 auto 60px;
 }
 
-/* Why Join Section */
+/* ===================================
+   Why Join Section
+   =================================== */
+
 .why-join-section {
   padding: 50px 20px;
   background: var(--secondary-bg);
@@ -176,9 +173,6 @@
   transition: all 0.3s ease;
   text-align: center;
 }
-
-
-
 
 .value-card:hover {
   transform: translateY(-8px);
@@ -203,7 +197,10 @@
   color: var(--text-secondary);
 }
 
-/* Perks Section */
+/* ===================================
+   Perks Section
+   =================================== */
+
 .perks-section {
   padding: 100px 20px;
   background: var(--primary-bg);
@@ -246,7 +243,10 @@
   color: var(--text-secondary);
 }
 
-/* Positions Section */
+/* ===================================
+   Positions Section
+   =================================== */
+
 .positions-section {
   padding: 100px 20px;
   background: var(--secondary-bg);
@@ -346,6 +346,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .apply-btn:hover {
@@ -359,7 +360,10 @@
   color: var(--text-secondary);
 }
 
-/* Culture Section */
+/* ===================================
+   Culture Section
+   =================================== */
+
 .culture-section {
   padding: 30px 20px;
   background: var(--primary-bg);
@@ -393,10 +397,7 @@
   transition: transform 0.3s ease;
 }
 
-.culture-card:hover::before {
-  transform: scaleX(1);
-}
-
+.culture-card:hover::before { transform: scaleX(1); }
 .culture-card:hover {
   transform: translateY(-5px);
   border-color: var(--accent-cyan);
@@ -421,7 +422,10 @@
   color: var(--text-secondary);
 }
 
-/* CTA Section */
+/* ===================================
+   CTA Section
+   =================================== */
+
 .cta-section {
   padding: 120px 20px;
   background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--card-bg) 100%);
@@ -439,6 +443,7 @@
   background: radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, transparent 70%);
   border-radius: 50%;
   transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 .cta-content {
@@ -503,81 +508,9 @@
   transform: translateY(-2px);
 }
 
-/*.general-application-section {
-  padding: 80px 20px;
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.75),
-      rgba(0, 0, 0, 0.75)
-    );/*url("https://images.unsplash.com/photo-1519389950473-47ba0277781c");
-  background-size: cover;
-  background-position: center;
-}
-
-.general-application-card {
-
-  max-width: 720px;
-  margin: auto;
-  background: rgba(15, 23, 42, 0.9);
-  padding: 40px;
-  border-radius: 16px;
-  color: #fff;
-}
-
-.general-application-card h2 {
-  font-size: 40px;
-  margin-bottom: 15px;
-}
-
-.general-application-card p {
-  color: #ddd;
-  margin-bottom: 20px;
-}
-
-.resume-label {
-  display: block;
-  margin-bottom: 8px;
-}
-
-
-.resume-input {
-  
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 25px;
-}
-
-.submit-btn {
-  width: 100%;
-}
-
-.file-upload-btn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 14px;
-  margin-bottom: 25px;
-
-  background: #1f2937;
-  color: #fff;
-
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: background 0.3s ease;
-}
-
-.file-upload-btn:hover {
-  background: #273449;
-} */
-
-
-
-
+/* ===================================
+   General Application Modal
+   =================================== */
 
 .general-application-section {
   position: fixed;
@@ -588,9 +521,9 @@
   align-items: center;
   justify-content: center;
   z-index: 2000;
+  padding: 16px; /* ensures card doesn't touch edges on mobile */
 }
 
-/* ===== Card ===== */
 .general-application-card {
   width: 100%;
   max-width: 520px;
@@ -600,9 +533,10 @@
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
   color: #ffffff;
   animation: fadeUp 0.35s ease;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
-/* ===== Heading & Text ===== */
 .general-application-card h2 {
   font-size: 28px;
   font-weight: 700;
@@ -615,7 +549,6 @@
   margin-bottom: 22px;
 }
 
-/* ===== Inputs ===== */
 .general-application-card input[type="text"],
 .general-application-card input[type="email"],
 .general-application-card input[type="tel"] {
@@ -630,16 +563,13 @@
   outline: none;
 }
 
-.general-application-card input::placeholder {
-  color: #94a3b8;
-}
+.general-application-card input::placeholder { color: #94a3b8; }
 
 .general-application-card input:focus {
   border-color: #22d3ee;
   box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.25);
 }
 
-/* ===== File Upload Button ===== */
 .file-upload-btn {
   display: block;
   text-align: center;
@@ -660,7 +590,6 @@
   color: #22d3ee;
 }
 
-/* Selected file name */
 .file-name {
   margin-top: 8px;
   font-size: 13px;
@@ -668,12 +597,25 @@
   text-align: center;
 }
 
-.close-btn{
-  margin-left: 450px;
+/* Close button — use flexbox on card header instead of hardcoded margin */
+.close-btn {
+  display: block;
+  margin-left: auto; /* push to right without hardcoded px */
   background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: color 0.2s ease;
+  margin-bottom: 12px;
 }
 
-/* ===== Submit Button ===== */
+.close-btn:hover {
+  color: var(--accent-cyan);
+}
+
 .submit-btn {
   width: 100%;
   margin-top: 18px;
@@ -698,33 +640,14 @@
   cursor: not-allowed;
 }
 
-/* ===== Animation ===== */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(25px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== Mobile Responsive ===== */
-@media (max-width: 600px) {
-  .general-application-card {
-    padding: 24px;
-    margin: 0 14px;
-  }
-
-  .general-application-card h2 {
-    font-size: 22px;
-  }
-}
-
-
-
-
+/* ===================================
+   Job Detail Modal
+   =================================== */
 
 .modal-overlay {
   position: fixed;
@@ -737,7 +660,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 20px;
+  padding: 16px;
   overflow-y: auto;
 }
 
@@ -754,14 +677,8 @@
 }
 
 @keyframes modalSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .modal-close {
@@ -821,9 +738,7 @@
   margin-bottom: 40px;
 }
 
-.modal-section:last-child {
-  margin-bottom: 0;
-}
+.modal-section:last-child { margin-bottom: 0; }
 
 .modal-section h3 {
   font-size: 24px;
@@ -879,58 +794,118 @@
   font-size: 17px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* ===================================
+   Responsive — Tablet (≤1024px)
+   =================================== */
+
+@media (max-width: 1024px) {
   .hero-title {
-    font-size: 36px;
+    font-size: 46px;
+  }
+
+  .perks-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+/* ===================================
+   Responsive — Mobile (≤768px)
+   =================================== */
+
+@media (max-width: 768px) {
+  /* Hero */
+  .careers-hero {
+    padding: 90px 16px 60px;
+  }
+
+  .hero-title {
+    font-size: 34px;
   }
 
   .hero-subtitle {
     font-size: 16px;
   }
 
+  .badge {
+    font-size: 13px;
+    padding: 6px 16px;
+    margin-bottom: 24px;
+  }
+
+  /* Sections */
   .section-title {
-    font-size: 32px;
-    margin-bottom: 16px;
+    font-size: 30px;
+    margin-bottom: 30px;
   }
 
   .section-description {
-    font-size: 16px;
-    margin-bottom: 40px;
-  }
-
-  .careers-hero {
-    padding: 80px 20px 60px;
+    font-size: 15px;
+    margin-bottom: 36px;
   }
 
   .why-join-section,
   .perks-section,
   .positions-section,
   .culture-section {
-    padding: 60px 20px;
+    padding: 60px 16px;
   }
 
   .cta-section {
-    padding: 80px 20px;
+    padding: 80px 16px;
   }
 
+  /* Grids → single column */
   .values-grid,
   .perks-grid,
   .culture-grid {
     grid-template-columns: 1fr;
   }
 
+  .value-card,
+  .perk-card,
+  .culture-card {
+    padding: 28px 24px;
+  }
+
+  /* Job cards */
+  .job-card {
+    padding: 24px;
+  }
+
   .job-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 14px;
+  }
+
+  .job-header h3 {
+    font-size: 20px;
+    margin-bottom: 6px;
   }
 
   .apply-btn {
     width: 100%;
+    text-align: center;
   }
 
+  /* Category filters */
+  .category-filters {
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .category-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  /* CTA */
   .cta-content h2 {
-    font-size: 32px;
+    font-size: 28px;
+  }
+
+  .cta-content p {
+    font-size: 16px;
   }
 
   .cta-buttons {
@@ -941,58 +916,116 @@
   .btn-primary,
   .btn-secondary {
     width: 100%;
-    max-width: 300px;
+    max-width: 320px;
   }
 
+  /* General Application Card */
+  .general-application-card {
+    padding: 24px 20px;
+  }
+
+  .general-application-card h2 {
+    font-size: 22px;
+  }
+
+  /* Job Detail Modal */
   .modal-header,
   .modal-body,
   .modal-footer {
-    padding: 30px 24px;
+    padding: 28px 20px;
+  }
+
+  .modal-header {
+    padding-top: 36px;
   }
 
   .modal-header h2 {
-    font-size: 24px;
+    font-size: 22px;
+    padding-right: 40px; /* avoid overlap with close btn */
   }
 
   .modal-section h3 {
-    font-size: 20px;
+    font-size: 19px;
   }
 
   .modal-meta {
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
+  }
+
+  .btn-large {
+    font-size: 15px;
+    padding: 14px 24px;
   }
 }
 
+/* ===================================
+   Responsive — Small Mobile (≤480px)
+   =================================== */
+
 @media (max-width: 480px) {
+  .careers-hero {
+    padding: 80px 14px 50px;
+  }
+
   .hero-title {
     font-size: 28px;
+    line-height: 1.25;
   }
 
   .section-title {
-    font-size: 28px;
+    font-size: 26px;
   }
 
-  .value-card,
-  .perk-card,
-  .culture-card {
-    padding: 24px;
+  .value-icon,
+  .perk-icon {
+    font-size: 40px;
+  }
+
+  .culture-number {
+    font-size: 36px;
   }
 
   .job-card {
-    padding: 20px;
+    padding: 18px 16px;
   }
 
-  .job-header h3 {
-    font-size: 20px;
+  .job-meta {
+    gap: 10px;
   }
 
-  .category-filters {
-    gap: 12px;
+  .cta-content h2 {
+    font-size: 24px;
+  }
+
+  .general-application-card {
+    padding: 20px 16px;
+  }
+}
+
+/* ===================================
+   Responsive — Extra Small (≤360px)
+   =================================== */
+
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 24px;
+  }
+
+  .badge {
+    font-size: 12px;
+    padding: 5px 12px;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .submit-btn {
+    font-size: 14px;
+    padding: 12px 20px;
   }
 
   .category-btn {
-    padding: 10px 20px;
-    font-size: 14px;
+    padding: 8px 14px;
+    font-size: 13px;
   }
 }
