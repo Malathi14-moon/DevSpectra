@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import './Services.css';
+
 
 const Services = () => {
   const [activeService, setActiveService] = useState(0);
@@ -316,8 +318,8 @@ const Services = () => {
               comprehensive digital solutions.
             </p>
             <div className="cta-buttons">
-              <button className="btn-primary">Start Your Project →</button>
-              <button className="btn-secondary">Schedule Consultation</button>
+              <Link to="/contact" className="btn-primary">Start Your Project →</Link>
+              
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 import './careers.css';
 import axios from "axios";
 
@@ -257,7 +257,7 @@ const handleResumeSubmit = async (e) => {
                 Send General Application
               </button>
 
-              <button className="btn-secondary">Contact HR Team</button>
+              <Link to="/contact" className="btn-secondary">Contact HR Team</Link>
             </div>
           </div>
         </div>
@@ -390,7 +390,7 @@ const handleResumeSubmit = async (e) => {
               </div>
             </div>
             <div className="modal-footer">
-              <button className="btn-primary btn-large">Apply for This Position</button>
+              <Link to="/contact" className="btn-primary btn-large">Apply for This Position</Link>
             </div>
           </div>
         </div>

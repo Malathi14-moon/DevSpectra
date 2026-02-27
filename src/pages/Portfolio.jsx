@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import './Portfolio.css';
 
 const Portfolio = () => {
@@ -326,8 +327,8 @@ const Portfolio = () => {
               Our team is here to help you succeed.
             </p>
             <div className="cta-buttons">
-              <button className="btn-primary">Start Your Project →</button>
-              <button className="btn-secondary">Schedule a Call</button>
+              <Link to="/contact" className="btn-primary">Start Your Project →</Link>
+              <Link to="/contact" className="btn-secondary">Schedule a Call</Link>
             </div>
           </div>
         </div>

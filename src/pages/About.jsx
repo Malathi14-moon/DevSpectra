@@ -210,7 +210,7 @@ const About = () => {
               {/*<button className="btn-primary">Start Your Project →</button>*/}
 
               <Link to="/Contact" className="btn-primary">Start Your Project →</Link>
-              <button className="btn-secondary">View Portfolio ↗</button>
+              <Link to="/portfolio" className="btn-secondary">View Portfolio ↗</Link>
             </div>
           </div>
         </div>
