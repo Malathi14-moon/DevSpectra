@@ -87,8 +87,22 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    await axios.get("https://devspectra-qnwe.onrender.com/").catch(() => {});
+
+    
     try {
-      await axios.post("https://devspectra-qnwe.onrender.com/contact", formData);
+      console.log("📤 Sending form data:", formData);
+      const response = await axios.post(
+        "https://devspectra-qnwe.onrender.com/contact",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+      console.log("✅ Response:", response.data);
       alert("Form submitted successfully ✅");
       setFormData({
         name: "",

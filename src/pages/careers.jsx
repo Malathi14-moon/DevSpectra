@@ -28,6 +28,8 @@ const Careers = () => {
 const handleResumeSubmit = async (e) => {
   e.preventDefault();
 
+  await axios.get("https://devspectra-qnwe.onrender.com/").catch(() => {});
+
   if (!resume || !name || !email || !phone) {
     alert("Please fill all fields and upload resume");
     return;
@@ -43,12 +45,20 @@ const handleResumeSubmit = async (e) => {
 
   try {
     setLoading(true);
+    console.log("📩 Submitting application with form data...");
 
-    await axios.post(
+    const response = await axios.post(
       "https://devspectra-qnwe.onrender.com/send-application",
-      formData
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+        timeout: 60000
+      }
     );
 
+    console.log("✅ Response:", response.data);
     alert("Resume sent to HR successfully ✅");
     setShowGeneralApplication(false);
 
@@ -58,8 +68,10 @@ const handleResumeSubmit = async (e) => {
     setPhone("");
     setDescription("");
   } catch (error) {
-    console.error(error);
-    alert(error.response?.data?.message || "Server error ❌");
+    console.error("❌ Application submission error:", error);
+    console.error("Error response:", error.response?.data);
+    const errorMsg = error.response?.data?.message || error.message || "Server error";
+    alert(errorMsg + " ❌");
   } finally {
     setLoading(false);
   }

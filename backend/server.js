@@ -33,9 +33,15 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+console.log("📧 Email config:", {
+  user: process.env.EMAIL_USER ? "✅ Set" : "❌ Missing",
+  pass: process.env.EMAIL_PASS ? "✅ Set" : "❌ Missing",
+  hr_email: process.env.HR_EMAIL ? "✅ Set" : "❌ Missing"
+});
+
 transporter.verify((error) => {
   if (error) console.error("❌ SMTP error:", error);
-  else console.log("SMTP Server ready ✅");
+  else console.log("✅ SMTP Server ready");
 });
 
 // MongoDB connection
@@ -79,13 +85,25 @@ app.post("/send-application", upload.single("resume"), async (req, res) => {
   try {
     const { name, email, phone, description } = req.body;
 
+    // Validation
+    if (!name || !email || !phone) {
+      return res.status(400).json({ message: "Name, email, and phone are required" });
+    }
+
     if (!req.file) {
       return res.status(400).json({ message: "Resume file is required" });
+    }
+
+    // Check environment variables
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS || !process.env.HR_EMAIL) {
+      console.error("❌ Missing email environment variables");
+      return res.status(500).json({ message: "Server email configuration error" });
     }
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.HR_EMAIL,
+      replyTo: email,
       subject: `New Job Application - ${name}`,
       html: `
         <h2>New Applicant</h2>
@@ -103,11 +121,14 @@ app.post("/send-application", upload.single("resume"), async (req, res) => {
       ],
     };
 
+    console.log("📧 Sending email to:", process.env.HR_EMAIL);
     await transporter.sendMail(mailOptions);
+    console.log("✅ Email sent successfully");
     res.status(200).json({ message: "Application sent successfully ✅" });
   } catch (error) {
-    console.error("❌ Error in /send-application:", error);
-    res.status(500).json({ message: "Failed to send email" });
+    console.error("❌ Error in /send-application:", error.message);
+    console.error("Error details:", error);
+    res.status(500).json({ message: `Failed to send email: ${error.message}` });
   }
 });
 
