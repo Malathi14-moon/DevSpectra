@@ -12,7 +12,16 @@ console.log("MONGO_URI:", process.env.MONGO_URI);
 
 const app = express();
 
-app.use(cors());
+/*app.use(cors());*/
+
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://dev-spectra-lyart.vercel.app"
+  ],
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
