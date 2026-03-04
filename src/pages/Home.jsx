@@ -5,7 +5,9 @@ import './Home.css';
 const Home = () => {
   return (
     <div className="home page-transition">
+      
       <Hero />
+    
     </div>
   );
 };

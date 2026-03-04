@@ -9,6 +9,7 @@ import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
 import Careers from './pages/careers';
+import Chatbot from './components/chatbot';
 import './App.css';
 
 function App() {
@@ -25,11 +26,13 @@ function App() {
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/careers" element={<Careers />} />
+            
 
           </Routes>
         </main>
         <Footer />
       </div>
+      <Chatbot />
     </Router>
   );
 }
