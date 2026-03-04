@@ -238,6 +238,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Multer setup for resume uploads
 const upload = multer({
@@ -262,7 +263,7 @@ transporter.verify((error) => {
 });
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, { dbName: "devspectra" })
 .then(() => console.log("✅ MongoDB connected"))
 .catch(err => console.error("❌ MongoDB connection error:", err));
 
@@ -290,6 +291,7 @@ app.post("/contact", async (req, res) => {
   } catch (error) {
     console.error("❌ Error saving contact form:", error);
     res.status(500).json({ message: "Failed to save contact form" });
+    console.log("📩 Incoming data:", req.body);
   }
 });
 
