@@ -45,7 +45,7 @@ const handleResumeSubmit = async (e) => {
     setLoading(true);
 
     await axios.post(
-      "http://localhost:5000/send-application",
+      "https://devspectra-lf9s.onrender.com/send-application",
       formData
     );
 
