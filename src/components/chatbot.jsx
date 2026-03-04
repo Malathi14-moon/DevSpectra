@@ -202,7 +202,7 @@ const SUGGESTIONS = [
 
 // Calls YOUR backend at port 5000 — same server as contact & careers
 async function askGroq(messages) {
-  const response = await fetch("http://localhost:5000/api/chat", {
+  const response = await fetch("https://devspectra-qnwe.onrender.com/api/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ messages }),

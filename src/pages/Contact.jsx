@@ -88,7 +88,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/contact", formData);
+      await axios.post("https://devspectra-qnwe.onrender.com/contact", formData);
       alert("Form submitted successfully ✅");
       setFormData({
         name: "",
